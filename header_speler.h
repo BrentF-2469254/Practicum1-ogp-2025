@@ -3,11 +3,9 @@
 class Speler
 {
 public:
-    bool aan_de_beurt() const;
-    Speler(std::string naam);        // constructor
-    void setKleur(int nieuwe_kleur); // setter
+    Speler(std::string naam, int nieuwe_kleur); // constructor
 
 private:
     std::string m_naam;
-    int kleur;
+    int m_kleur;
 };
