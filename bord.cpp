@@ -92,6 +92,7 @@ bool Bord::beweeg_piece(int x1, int y1, int x2, int y2)
 std::vector<Point> Bord::valid_movements_pion(int x1, int y1, bool firstMove, Kleur kleur)
 {
     std::vector<Point> points;
+
     if (kleur == Kleur::Wit)
     {
         if (!firstMove)
@@ -103,20 +104,45 @@ std::vector<Point> Bord::valid_movements_pion(int x1, int y1, bool firstMove, Kl
             points.push_back({x1, y1 + 1});
             points.push_back({x1, y1 + 2});
         }
+
+        // Check rechts diagonaal slaan
+        if (x1 + 1 < 8 && y1 + 1 < 8 && arr[x1 + 1][y1 + 1] && arr[x1 + 1][y1 + 1]->getKleur() == Kleur::Zwart)
+        {
+            points.push_back({x1 + 1, y1 + 1});
+        }
+
+        // Check links diagonaal slaan
+        if (x1 - 1 >= 0 && y1 + 1 < 8 && arr[x1 - 1][y1 + 1] && arr[x1 - 1][y1 + 1]->getKleur() == Kleur::Zwart)
+        {
+            points.push_back({x1 - 1, y1 + 1});
+        }
     }
+
     if (kleur == Kleur::Zwart)
     {
         if (!firstMove)
         {
-            if (!arr[x1][y1 - 1])
+            if (y1 - 1 >= 0 && !arr[x1][y1 - 1])
                 points.push_back({x1, y1 - 1});
         }
         else
         {
-            if (!arr[x1][y1 - 1])
+            if (y1 - 1 >= 0 && !arr[x1][y1 - 1])
                 points.push_back({x1, y1 - 1});
-            if (!arr[x1][y1 - 2])
+            if (y1 - 2 >= 0 && !arr[x1][y1 - 2])
                 points.push_back({x1, y1 - 2});
+        }
+
+        // Check rechts diagonaal slaan
+        if (x1 + 1 < 8 && y1 - 1 >= 0 && arr[x1 + 1][y1 - 1] && arr[x1 + 1][y1 - 1]->getKleur() == Kleur::Wit)
+        {
+            points.push_back({x1 + 1, y1 - 1});
+        }
+
+        // Check links diagonaal slaan
+        if (x1 - 1 >= 0 && y1 - 1 >= 0 && arr[x1 - 1][y1 - 1] && arr[x1 - 1][y1 - 1]->getKleur() == Kleur::Wit)
+        {
+            points.push_back({x1 - 1, y1 - 1});
         }
     }
 
