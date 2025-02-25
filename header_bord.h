@@ -1,3 +1,4 @@
+#pragma once
 #include "header_pion.h"
 class Bord
 {
