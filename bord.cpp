@@ -45,7 +45,21 @@ void Bord::printbord() const
         std::cout << "\n";
     }
 }
+void Bord::beweeg_piece(int x1, int y1, int x2, int y2)
+{
+    bool firstMove = (y1 == 1);
+    std::vector<Point> moves = valid_movements_pion(x1, y1, firstMove);
+    for (const Point &move : moves)
+    {
+        if (move.x == x2 && move.y == y2)
+        {
+            arr[x2][y2]->verander_pos(x2, y2);
+            return;
+        }
+    }
 
+    std::cout << "Ongeldige zet! Pion kan niet naar (" << x2 << ", " << y2 << ").\n";
+}
 Bord::~Bord()
 {
     for (int i = 0; i < 8; i++)
