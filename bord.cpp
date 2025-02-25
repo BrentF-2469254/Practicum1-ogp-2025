@@ -50,24 +50,28 @@ void Bord::printbord() const
         std::cout << "\n";
     }
 }
-void Bord::beweeg_piece(int x1, int y1, int x2, int y2)
+bool Bord::beweeg_piece(int x1, int y1, int x2, int y2)
 {
+    // Invalid coordinates
     if (x1 < 0 || x1 >= 8 || y1 < 0 || y1 >= 8 || x2 < 0 || x2 >= 8 || y2 < 0 || y2 >= 8)
     {
         std::cout << "Ongeldige coördinaten! De zet is buiten het bord.\n";
-        return;
+        return false; // Correctly return false
     }
 
+    // No piece at (x1, y1)
     if (!arr[x1][y1])
     {
         std::cout << "Geen pion op (" << x1 << ", " << y1 << ").\n";
-        return;
+        return false; // Correctly return false
     }
 
+    // First move check
     bool firstMove = (arr[x1][y1]->getKleur() == Kleur::Wit && y1 == 1) ||
                      (arr[x1][y1]->getKleur() == Kleur::Zwart && y1 == 6);
-    Kleur kleur = static_cast<Kleur>(arr[x1][y1]->getKleur()); // chatgpt fix voor kleur want kan niet gwn kleur gebruiken idk
+    Kleur kleur = static_cast<Kleur>(arr[x1][y1]->getKleur());
 
+    // Get valid moves for the piece
     std::vector<Point> moves = valid_movements_pion(x1, y1, firstMove, kleur);
     for (const Point &move : moves)
     {
@@ -76,11 +80,13 @@ void Bord::beweeg_piece(int x1, int y1, int x2, int y2)
             arr[x2][y2] = arr[x1][y1];
             arr[x1][y1] = nullptr;
             arr[x2][y2]->verander_pos(x2, y2);
-            return;
+            return true; // Correctly return true if valid move
         }
     }
 
+    // If no valid move was found
     std::cout << "Ongeldige zet! Pion kan niet naar (" << x2 + 1 << ", " << y2 + 1 << ").\n";
+    return false; // Ensure a return at the end
 }
 
 std::vector<Point> Bord::valid_movements_pion(int x1, int y1, bool firstMove, Kleur kleur)
