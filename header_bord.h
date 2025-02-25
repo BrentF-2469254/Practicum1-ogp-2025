@@ -14,7 +14,8 @@ private:
 public:
     void printbord() const;
     void beweeg_piece(int x1, int y1, int x2, int y2);
-    std::vector<Point> valid_movements_pion(int x1, int y1, bool firstMove = false);
+    std::vector<Point> valid_movements_pion(int x1, int y1, bool firstMove = false, Kleur kleur = Kleur::Wit);
+    bool is_pion_op_positie(int x, int y) const;
     Bord();
     ~Bord();
 };

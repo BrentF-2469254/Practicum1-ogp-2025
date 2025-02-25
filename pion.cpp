@@ -2,7 +2,7 @@
 #include "header_kleur.h"
 void Pion::verander_pos(int x, int y)
 {
-    m_x = x,
+    m_x = x;
     m_y = y;
 }
 
