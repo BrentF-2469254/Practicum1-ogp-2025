@@ -12,3 +12,5 @@ Pion::Pion(int x, int y, Kleur kleur)
     m_y = y;
     m_kleur = kleur;
 }
+
+Pion::Pion() : m_x(0), m_y(0), m_kleur(0) {}

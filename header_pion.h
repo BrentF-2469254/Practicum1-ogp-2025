@@ -13,4 +13,8 @@ public:
     void verander_pos(int x, int y);
     Pion(int x, int y, Kleur kleur);
     Pion();
+    int getKleur() const
+    {
+        return m_kleur;
+    }
 };
