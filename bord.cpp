@@ -50,22 +50,30 @@ void Bord::printbord() const
         std::cout << "\n";
     }
 }
-bool Bord::beweeg_piece(int x1, int y1, int x2, int y2)
+bool Bord::beweeg_piece(int x1, int y1, int x2, int y2, Kleur huidigeKleur)
 {
     // Invalid coordinates
+
     if (x1 < 0 || x1 >= 8 || y1 < 0 || y1 >= 8 || x2 < 0 || x2 >= 8 || y2 < 0 || y2 >= 8)
     {
         std::cout << "Ongeldige coördinaten! De zet is buiten het bord.\n";
-        return false; // Correctly return false
+        return false;
     }
 
     // No piece at (x1, y1)
-    if (!arr[x1][y1])
+    if (!arr[x1][y1]) // Dit checkt al op nullptr
     {
         std::cout << "Geen pion op (" << x1 << ", " << y1 << ").\n";
-        return false; // Correctly return false
+        return false;
     }
 
+    // Controleer of de speler aan de beurt is
+    if (arr[x1][y1]->getKleur() != huidigeKleur) // Gebruik y1 in plaats van x2
+    {
+        std::cout << "Jij, " << arr[x1][y1]->getKleur() << ", bent niet aan de beurt. "
+                  << huidigeKleur << " is aan de beurt.\n";
+        return false;
+    }
     // First move check
     bool firstMove = (arr[x1][y1]->getKleur() == Kleur::Wit && y1 == 1) ||
                      (arr[x1][y1]->getKleur() == Kleur::Zwart && y1 == 6);
@@ -167,6 +175,7 @@ int main()
     Bord bord;
     std::cout << "initiele bord status:\n";
     bord.printbord();
+    Kleur huidigeKleur = Kleur::Wit;
 
     int x1, y1, x2, y2;
 
@@ -186,8 +195,18 @@ int main()
             continue;
         }
 
-        bord.beweeg_piece(x1, y1, x2, y2);
-
+        bool succes = bord.beweeg_piece(x1, y1, x2, y2, huidigeKleur);
+        if (succes)
+        {
+            if (huidigeKleur == Kleur::Wit)
+            {
+                huidigeKleur = Kleur::Zwart;
+            }
+            else
+            {
+                huidigeKleur = Kleur::Wit;
+            }
+        }
         bord.printbord();
     }
 
