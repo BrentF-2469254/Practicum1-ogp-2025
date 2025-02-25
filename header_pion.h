@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "header_kleur.h"
 class Pion
 {
 private:
@@ -10,5 +11,6 @@ private:
 
 public:
     void verander_pos(int x, int y);
-    Pion(int x, int y, int kleur);
+    Pion(int x, int y, Kleur kleur);
+    Pion();
 };
