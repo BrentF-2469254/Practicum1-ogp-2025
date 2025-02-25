@@ -17,4 +17,9 @@ public:
     {
         return m_kleur;
     }
+
+    std::string getNaam()
+    {
+        return naam;
+    }
 };
