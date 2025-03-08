@@ -6,3 +6,8 @@ Kleur Speler::get_kleur()
 {
     return m_kleur;
 };
+
+Entity Speler::get_entity()
+{
+    return m_entity;
+};
