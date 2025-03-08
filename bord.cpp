@@ -1,6 +1,8 @@
 #include "header_bord.h"
 #include "header_pion.h"
 #include "header_kleur.h"
+#include "header_speler.h"
+#include "header_entity.h"
 #include <iostream>
 Bord::Bord()
 {
@@ -186,7 +188,50 @@ int main()
         }
 
     } while (keuze != 0 && keuze != 1);
-    std::cout << "Je hebt gekozen voor: " << keuze << '\n';
+
+    if (keuze == 1)
+    {
+        int begin;
+        do
+        {
+            std::cout << "Maak een keuze.\n";
+            std::cout << "0: Jij begint.\n";
+            std::cout << "1: Computer begint.\n";
+            std::cout << "Voer je keuze in: ";
+            std::cin >> begin;
+            if (begin != 0 && begin != 1)
+            {
+                std::cout << "Ongeldige invoer, probeer opnieuw.\n";
+            }
+
+        } while (begin != 0 && begin != 1);
+        if (begin == 1)
+        {
+            Speler speler_1("Computer", Kleur::Wit, Entity::bot);
+            std::string naam;
+            std::cout << "geef je naam\n";
+            std::cin >> naam;
+            Speler speler_2(naam, Kleur::Zwart, Entity::mens);
+        }
+        else
+        {
+            Speler speler_2("Computer", Kleur::Zwart, Entity::bot);
+            std::string naam;
+            std::cout << "geef je naam\n";
+            std::cin >> naam;
+            Speler speler_1(naam, Kleur::Wit, Entity::mens);
+        }
+    }
+    else
+    {
+        std::string naam;
+        std::cout << "geef naam van beginnende speler";
+        Speler speler_1(naam, Kleur::Wit, Entity::mens);
+
+        std::string naam;
+        std::cout << "geef naam van tweede speler";
+        Speler speler_2(naam, Kleur::Zwart, Entity::mens);
+    }
 
     Bord bord;
     std::cout << "initiele bord status:\n";
