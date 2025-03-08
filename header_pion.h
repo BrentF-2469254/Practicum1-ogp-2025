@@ -7,7 +7,7 @@ private:
     int m_kleur;
     int m_x;
     int m_y;
-    std::string naam = "pion";
+    std::string piece_type = "pion";
 
 public:
     void verander_pos(int x, int y);
@@ -17,9 +17,8 @@ public:
     {
         return m_kleur;
     }
-
-    std::string getNaam()
+    std::string get_piece_type()
     {
-        return naam;
+        return piece_type;
     }
 };

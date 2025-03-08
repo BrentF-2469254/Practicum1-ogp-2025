@@ -3,6 +3,7 @@
 #include "header_kleur.h"
 #include "header_speler.h"
 #include "header_entity.h"
+#include <random>
 #include <iostream>
 Bord::Bord()
 {
@@ -172,6 +173,43 @@ Bord::~Bord()
     }
 }
 
+bool Bord::computer_beweeg_piece(Kleur kleur_van_bot)
+{
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = 8; j > 0; j--)
+        {
+            if (!arr[i][j] && arr[i][j]->getKleur() == kleur_van_bot)
+            {
+                if (arr[j][j]->get_piece_type() == "pion")
+                {
+                    bool firstMove = (arr[i][j]->getKleur() == Kleur::Wit && j == 1) || (arr[i][j]->getKleur() == Kleur::Zwart && j == 6);
+                    std::vector<Point> moves = valid_movements_pion(i, j, firstMove, kleur_van_bot);
+                    if (moves.empty())
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        // Create a random number generator
+                        std::random_device rd;                                        // Obtain a random seed
+                        std::mt19937 gen(rd());                                       // Seed the generator
+                        std::uniform_int_distribution<> distrib(0, moves.size() - 1); // Range [0, size-1]
+
+                        // Get a random index
+                        int randomIndex = distrib(gen);
+                        Point eindpunt = moves[randomIndex];
+                        arr[eindpunt.x][eindpunt.y] = arr[i][j];
+                        arr[i][j] = nullptr;
+                        arr[eindpunt.x][eindpunt.y]->verander_pos(eindpunt.x, eindpunt.y);
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+}
+
 int main()
 {
     Speler speler_1;
@@ -284,7 +322,7 @@ int main()
 
             if (huidigespeler.get_entity() == Entity::bot)
             {
-                succes = bord.computer_beweeg_piece();
+                succes = bord.computer_beweeg_piece(huidigespeler.get_kleur());
             }
             else
             {
