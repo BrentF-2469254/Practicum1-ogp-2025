@@ -17,7 +17,7 @@ public:
     bool beweeg_piece(int x1, int y1, int x2, int y2, Kleur huidigeKleur);
     std::vector<Point> valid_movements_pion(int x1, int y1, bool firstMove = false, Kleur kleur = Kleur::Wit);
     bool is_pion_op_positie(int x, int y) const;
-    void computer(Kleur computer_zijn_kleur);
+    bool computer_beweeg_piece(); // als deze een false returned dan is die gecheckmate onthoud
     Bord();
     ~Bord();
 };
