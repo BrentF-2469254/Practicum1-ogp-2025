@@ -172,6 +172,22 @@ Bord::~Bord()
 
 int main()
 {
+    int keuze;
+    do
+    {
+        std::cout << "Maak een keuze.\n";
+        std::cout << "0: Je bent met 2 en wilt tegen elkaar spelen.\n";
+        std::cout << "1: Je wilt tegen een computer spelen.\n";
+        std::cout << "Voer je keuze in: ";
+        std::cin >> keuze;
+        if (keuze != 0 && keuze != 1)
+        {
+            std::cout << "Ongeldige invoer, probeer opnieuw.\n";
+        }
+
+    } while (keuze != 0 && keuze != 1);
+    std::cout << "Je hebt gekozen voor: " << keuze << '\n';
+
     Bord bord;
     std::cout << "initiele bord status:\n";
     bord.printbord();
