@@ -177,11 +177,11 @@ bool Bord::computer_beweeg_piece(Kleur kleur_van_bot)
 {
     for (int i = 0; i < 8; i++)
     {
-        for (int j = 8; j > 0; j--)
+        for (int j = 7; j >= 0; j--)
         {
-            if (!arr[i][j] && arr[i][j]->getKleur() == kleur_van_bot)
+            if (arr[i][j] && arr[i][j]->getKleur() == kleur_van_bot)
             {
-                if (arr[j][j]->get_piece_type() == "pion")
+                if (arr[i][j]->get_piece_type() == "pion")
                 {
                     bool firstMove = (arr[i][j]->getKleur() == Kleur::Wit && j == 1) || (arr[i][j]->getKleur() == Kleur::Zwart && j == 6);
                     std::vector<Point> moves = valid_movements_pion(i, j, firstMove, kleur_van_bot);
@@ -278,7 +278,6 @@ int main()
     std::cout << "initiele bord status:\n";
     bord.printbord();
     Speler huidigespeler = speler_1;
-
     int x1, y1, x2, y2;
     if (keuze == 0)
     {
