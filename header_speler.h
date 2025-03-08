@@ -1,12 +1,13 @@
 #pragma once
 #include <string>
+#include "header_entity.h"
 class Speler
 {
 public:
-    Speler(std::string naam, int nieuwe_kleur, int entity); // constructor
+    Speler(std::string naam, int nieuwe_kleur, Entity entity); // constructor
 
 private:
     std::string m_naam;
     int m_kleur;
-    int m_entity;
+    Entity m_entity;
 };
