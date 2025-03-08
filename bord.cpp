@@ -233,7 +233,7 @@ int main()
     }
 
     Bord bord;
-    std::cout << "initiële bord status:\n";
+    std::cout << "initiele bord status:\n";
     bord.printbord();
     Kleur huidigeKleur = Kleur::Wit;
 
