@@ -284,6 +284,7 @@ int main()
 
             if (huidigespeler.get_entity() == Entity::bot)
             {
+                succes = bord.computer_beweeg_piece();
             }
             else
             {
