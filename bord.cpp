@@ -225,10 +225,12 @@ int main()
     else
     {
         std::string naam;
-        std::cout << "geef naam van beginnende speler";
+        std::cout << "geef naam van beginnende speler\n";
+        std::cin >> naam;
         Speler speler_1(naam, Kleur::Wit, Entity::mens);
 
-        std::cout << "geef naam van tweede speler";
+        std::cout << "geef naam van tweede speler\n";
+        std::cin >> naam;
         Speler speler_2(naam, Kleur::Zwart, Entity::mens);
     }
 
