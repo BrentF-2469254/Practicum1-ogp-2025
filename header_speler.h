@@ -8,6 +8,7 @@ public:
     Speler(std::string naam, Kleur nieuwe_kleur, Entity entity); // constructor
     Speler();
     Kleur get_kleur();
+    Entity get_entity();
 
 private:
     std::string m_naam;

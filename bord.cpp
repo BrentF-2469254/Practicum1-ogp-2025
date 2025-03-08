@@ -278,14 +278,43 @@ int main()
 
     else
     {
+        bool succes;
         while (true)
         {
+
             if (huidigespeler.get_entity() == Entity::bot)
             {
             }
             else
             {
+                std::cout << "Voer een zet in (bijv. 1 2 1 3): ";
+                std::cin >> x1 >> y1 >> x2 >> y2;
+
+                // Pas aan zodat de indexen kloppen met de matrix
+                x1 -= 1; // Converteer naar 0-gebaseerde index;
+                y1 -= 1;
+                x2 -= 1; // Converteer naar 0-gebaseerde index
+                y2 -= 1;
+                if (!bord.is_pion_op_positie(x1, y1))
+                {
+                    std::cout << "Geen pion op de gekozen startpositie (" << x1 + 1 << ", " << y1 + 1 << "). Probeer opnieuw.\n";
+                    continue;
+                }
+
+                succes = bord.beweeg_piece(x1, y1, x2, y2, huidigespeler.get_kleur());
             }
+            if (succes)
+            {
+                if (huidigespeler.get_kleur() == Kleur::Wit)
+                {
+                    huidigespeler = speler_2;
+                }
+                else
+                {
+                    huidigespeler = speler_1;
+                }
+            }
+            bord.printbord();
         }
     }
 
