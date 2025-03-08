@@ -228,7 +228,6 @@ int main()
         std::cout << "geef naam van beginnende speler";
         Speler speler_1(naam, Kleur::Wit, Entity::mens);
 
-        std::string naam;
         std::cout << "geef naam van tweede speler";
         Speler speler_2(naam, Kleur::Zwart, Entity::mens);
     }
