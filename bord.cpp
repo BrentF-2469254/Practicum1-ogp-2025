@@ -11,7 +11,7 @@ Bord::Bord()
     {
         for (int j = 0; j < 8; j++)
         {
-            arr[i][j] = 0;
+            arr[i][j] = nullptr;
         }
     }
 
@@ -108,12 +108,21 @@ std::vector<Point> Bord::valid_movements_pion(int x1, int y1, bool firstMove, Kl
     {
         if (!firstMove)
         {
-            points.push_back({x1, y1 + 1});
+            if (arr[x1][y1 + 1] == nullptr || arr[x1][y1 + 1]->getKleur() != Kleur::Wit)
+            {
+                points.push_back({x1, y1 + 1});
+            }
         }
         else
         {
-            points.push_back({x1, y1 + 1});
-            points.push_back({x1, y1 + 2});
+            if (arr[x1][y1 + 1] == nullptr || arr[x1][y1 + 1]->getKleur() != Kleur::Wit)
+            {
+                points.push_back({x1, y1 + 1});
+            }
+            if (!arr[x1][y1 + 1] && (arr[x1][y1 + 2] == nullptr || arr[x1][y1 + 2]->getKleur() != Kleur::Wit))
+            {
+                points.push_back({x1, y1 + 2});
+            }
         }
 
         // Check rechts diagonaal slaan
@@ -133,15 +142,21 @@ std::vector<Point> Bord::valid_movements_pion(int x1, int y1, bool firstMove, Kl
     {
         if (!firstMove)
         {
-            if (y1 - 1 >= 0 && !arr[x1][y1 - 1])
+            if (arr[x1][y1 - 1] == nullptr || arr[x1][y1 - 1]->getKleur() != Kleur::Zwart)
+            {
                 points.push_back({x1, y1 - 1});
+            }
         }
         else
         {
-            if (y1 - 1 >= 0 && !arr[x1][y1 - 1])
+            if (arr[x1][y1 - 1] == nullptr || arr[x1][y1 - 1]->getKleur() != Kleur::Zwart)
+            {
                 points.push_back({x1, y1 - 1});
-            if (y1 - 2 >= 0 && !arr[x1][y1 - 2])
+            }
+            if (!arr[x1][y1 - 1] && (arr[x1][y1 - 2] == nullptr || arr[x1][y1 - 2]->getKleur() != Kleur::Zwart))
+            {
                 points.push_back({x1, y1 - 2});
+            }
         }
 
         // Check rechts diagonaal slaan
@@ -165,9 +180,10 @@ Bord::~Bord()
     {
         for (int j = 0; j < 8; j++)
         {
-            if (arr[i][j] != 0)
+            if (arr[i][j] != nullptr)
             {
                 delete arr[i][j];
+                arr[i][j] = nullptr;
             }
         }
     }
@@ -212,8 +228,8 @@ bool Bord::computer_beweeg_piece(Kleur kleur_van_bot)
 
 int main()
 {
-    Speler speler_1;
-    Speler speler_2;
+    Speler speler_1("", Kleur::Wit, Entity::mens); // Provide a default constructor
+    Speler speler_2("", Kleur::Zwart, Entity::mens);
     int keuze;
     do
     {
@@ -247,19 +263,19 @@ int main()
         } while (begin != 0 && begin != 1);
         if (begin == 1)
         {
-            Speler speler_1("Computer", Kleur::Wit, Entity::bot);
+            speler_1 = Speler("Computer", Kleur::Wit, Entity::bot);
             std::string naam;
             std::cout << "geef je naam\n";
             std::cin >> naam;
-            Speler speler_2(naam, Kleur::Zwart, Entity::mens);
+            speler_2 = Speler(naam, Kleur::Zwart, Entity::mens);
         }
         else
         {
-            Speler speler_2("Computer", Kleur::Zwart, Entity::bot);
+            speler_2 = Speler("Computer", Kleur::Zwart, Entity::bot);
             std::string naam;
             std::cout << "geef je naam\n";
             std::cin >> naam;
-            Speler speler_1(naam, Kleur::Wit, Entity::mens);
+            speler_1 = Speler(naam, Kleur::Wit, Entity::mens);
         }
     }
     else
@@ -267,16 +283,17 @@ int main()
         std::string naam;
         std::cout << "geef naam van beginnende speler\n";
         std::cin >> naam;
-        Speler speler_1(naam, Kleur::Wit, Entity::mens);
+        speler_1 = Speler(naam, Kleur::Wit, Entity::mens);
 
         std::cout << "geef naam van tweede speler\n";
         std::cin >> naam;
-        Speler speler_2(naam, Kleur::Zwart, Entity::mens);
+        speler_2 = Speler(naam, Kleur::Zwart, Entity::mens);
     }
 
     Bord bord;
     std::cout << "initiele bord status:\n";
     bord.printbord();
+    std::cout << "\n";
     Speler huidigespeler = speler_1;
     int x1, y1, x2, y2;
     if (keuze == 0)
@@ -310,6 +327,7 @@ int main()
                 }
             }
             bord.printbord();
+            std::cout << "\n";
         }
     }
 
@@ -353,6 +371,7 @@ int main()
                 }
             }
             bord.printbord();
+            std::cout << "\n";
         }
     }
 
