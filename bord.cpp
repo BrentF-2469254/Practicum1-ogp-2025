@@ -119,7 +119,7 @@ std::vector<Point> Bord::valid_movements_pion(int x1, int y1, bool firstMove, Kl
             {
                 points.push_back({x1, y1 + 1});
             }
-            if (!arr[x1][y1 + 1] && (arr[x1][y1 + 2] == nullptr))
+            if (arr[x1][y1 + 1] == nullptr && (arr[x1][y1 + 2] == nullptr))
             {
                 points.push_back({x1, y1 + 2});
             }
@@ -153,7 +153,7 @@ std::vector<Point> Bord::valid_movements_pion(int x1, int y1, bool firstMove, Kl
             {
                 points.push_back({x1, y1 - 1});
             }
-            if (!arr[x1][y1 - 1] && (arr[x1][y1 - 2] == nullptr))
+            if (arr[x1][y1 - 1] == nullptr && (arr[x1][y1 - 2] == nullptr))
             {
                 points.push_back({x1, y1 - 2});
             }
@@ -224,6 +224,7 @@ bool Bord::computer_beweeg_piece(Kleur kleur_van_bot)
             }
         }
     }
+    return false;
 }
 
 int main()
