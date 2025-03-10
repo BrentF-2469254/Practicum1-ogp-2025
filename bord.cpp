@@ -108,18 +108,18 @@ std::vector<Point> Bord::valid_movements_pion(int x1, int y1, bool firstMove, Kl
     {
         if (!firstMove)
         {
-            if (arr[x1][y1 + 1] == nullptr || arr[x1][y1 + 1]->getKleur() != Kleur::Wit)
+            if (arr[x1][y1 + 1] == nullptr)
             {
                 points.push_back({x1, y1 + 1});
             }
         }
         else
         {
-            if (arr[x1][y1 + 1] == nullptr || arr[x1][y1 + 1]->getKleur() != Kleur::Wit)
+            if (arr[x1][y1 + 1] == nullptr)
             {
                 points.push_back({x1, y1 + 1});
             }
-            if (!arr[x1][y1 + 1] && (arr[x1][y1 + 2] == nullptr || arr[x1][y1 + 2]->getKleur() != Kleur::Wit))
+            if (!arr[x1][y1 + 1] && (arr[x1][y1 + 2] == nullptr))
             {
                 points.push_back({x1, y1 + 2});
             }
@@ -142,18 +142,18 @@ std::vector<Point> Bord::valid_movements_pion(int x1, int y1, bool firstMove, Kl
     {
         if (!firstMove)
         {
-            if (arr[x1][y1 - 1] == nullptr || arr[x1][y1 - 1]->getKleur() != Kleur::Zwart)
+            if (arr[x1][y1 - 1] == nullptr)
             {
                 points.push_back({x1, y1 - 1});
             }
         }
         else
         {
-            if (arr[x1][y1 - 1] == nullptr || arr[x1][y1 - 1]->getKleur() != Kleur::Zwart)
+            if (arr[x1][y1 - 1] == nullptr)
             {
                 points.push_back({x1, y1 - 1});
             }
-            if (!arr[x1][y1 - 1] && (arr[x1][y1 - 2] == nullptr || arr[x1][y1 - 2]->getKleur() != Kleur::Zwart))
+            if (!arr[x1][y1 - 1] && (arr[x1][y1 - 2] == nullptr))
             {
                 points.push_back({x1, y1 - 2});
             }
