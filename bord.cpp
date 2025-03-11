@@ -53,7 +53,7 @@ void Bord::printbord() const
         std::cout << "\n";
     }
 }
-bool Bord::beweeg_piece(int x1, int y1, int x2, int y2, Kleur huidigeKleur)
+bool Bord::beweeg_piece(int x1, int y1, int x2, int y2, Speler huidigespeler)
 {
     // Invalid coordinates
 
@@ -71,10 +71,10 @@ bool Bord::beweeg_piece(int x1, int y1, int x2, int y2, Kleur huidigeKleur)
     }
 
     // Controleer of de speler aan de beurt is
-    if (arr[x1][y1]->getKleur() != huidigeKleur) // Gebruik y1 in plaats van x2
+    if (arr[x1][y1]->getKleur() != huidigespeler.get_kleur()) // Gebruik y1 in plaats van x2
     {
-        std::cout << "Jij, " << arr[x1][y1]->getKleur() << ", bent niet aan de beurt. "
-                  << huidigeKleur << " is aan de beurt.\n";
+        std::cout << "Jij, bent niet aan de beurt. "
+                  << huidigespeler.get_naam() << " is aan de beurt.\n";
         return false;
     }
     // First move check
@@ -315,7 +315,7 @@ int main()
                 continue;
             }
 
-            bool succes = bord.beweeg_piece(x1, y1, x2, y2, huidigespeler.get_kleur());
+            bool succes = bord.beweeg_piece(x1, y1, x2, y2, huidigespeler);
             if (succes)
             {
                 if (huidigespeler.get_kleur() == Kleur::Wit)
@@ -358,7 +358,7 @@ int main()
                     continue;
                 }
 
-                succes = bord.beweeg_piece(x1, y1, x2, y2, huidigespeler.get_kleur());
+                succes = bord.beweeg_piece(x1, y1, x2, y2, huidigespeler);
             }
             if (succes)
             {
