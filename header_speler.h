@@ -9,6 +9,7 @@ public:
     Speler();
     Kleur get_kleur();
     Entity get_entity();
+    std::string get_naam();
 
 private:
     std::string m_naam;

@@ -11,3 +11,8 @@ Entity Speler::get_entity()
 {
     return m_entity;
 };
+
+std::string Speler::get_naam()
+{
+    return m_naam;
+}

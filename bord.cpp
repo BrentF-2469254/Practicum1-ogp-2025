@@ -301,7 +301,7 @@ int main()
     {
         while (true)
         {
-            std::cout << "Voer een zet in (bijv. 1 2 1 3): ";
+            std::cout << huidigespeler.get_naam() << ", voer een zet in (bijv. 1 2 1 3): ";
             std::cin >> x1 >> y1 >> x2 >> y2;
 
             // Pas aan zodat de indexen kloppen met de matrix
@@ -344,7 +344,7 @@ int main()
             }
             else
             {
-                std::cout << "Voer een zet in (bijv. 1 2 1 3): ";
+                std::cout << huidigespeler.get_naam() << ", voer een zet in (bijv. 1 2 1 3): ";
                 std::cin >> x1 >> y1 >> x2 >> y2;
 
                 // Pas aan zodat de indexen kloppen met de matrix
