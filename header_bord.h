@@ -1,5 +1,6 @@
 #pragma once
 #include "header_pion.h"
+#include "header_speler.h"
 #include <iostream>
 #include <vector>
 struct Point
