@@ -30,29 +30,6 @@ bool Bord::is_pion_op_positie(int x, int y) const
     return arr[x][y] != nullptr; // Return true als er een pion op de positie staat
 }
 
-void Bord::printbord() const
-{
-    for (int i = 7; i >= 0; i--)
-    {
-        std::cout << i + 1 << "   ";
-        for (int j = 0; j < 8; j++)
-        {
-            if (arr[j][i] && arr[j][i]->getKleur() == Kleur::Wit)
-            {
-                std::cout << "W ";
-            }
-            else if (arr[j][i] && arr[j][i]->getKleur() == Kleur::Zwart)
-            {
-                std::cout << "Z ";
-            }
-            else
-            {
-                std::cout << ". ";
-            }
-        }
-        std::cout << "\n";
-    }
-}
 bool Bord::beweeg_piece(int x1, int y1, int x2, int y2, Speler huidigespeler)
 {
     // Invalid coordinates
