@@ -1,5 +1,4 @@
 #include "header_speler.h"
-#include "header_piece.h"
 class Computer : public Speler
 {
 public:
