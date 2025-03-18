@@ -1,7 +1,9 @@
 #pragma once
 #include <string>
+#include <vector>
 #include "header_kleur.h"
-class Pion
+#include "header_piece.h"
+class Pion : public Piece
 {
 private:
     int m_kleur;
@@ -10,9 +12,7 @@ private:
     std::string piece_type = "pion";
 
 public:
-    void verander_pos(int x, int y);
-    Pion(int x, int y, Kleur kleur);
-    Pion();
+    Pion(Kleur kleur, int x, int y);
     int getKleur() const
     {
         return m_kleur;
@@ -21,4 +21,5 @@ public:
     {
         return piece_type;
     }
+    std::vector<Point> valid_movements_pion(Point p);
 };
