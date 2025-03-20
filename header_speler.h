@@ -2,6 +2,8 @@
 #include <string>
 #include "header_kleur.h"
 #include "header_piece.h"
+#include <iostream>
+#include "header_point.h"
 class Speler
 {
 public:
@@ -10,7 +12,7 @@ public:
     std::string get_naam();
     virtual bool beweeg_piece(Piece **array) = 0;
 
-private:
+protected:
     std::string m_naam;
     Kleur m_kleur;
 };
