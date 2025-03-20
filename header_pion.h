@@ -1,7 +1,4 @@
 #pragma once
-#include <string>
-#include <vector>
-#include "header_kleur.h"
 #include "header_piece.h"
 class Pion : public Piece
 {
@@ -15,5 +12,5 @@ public:
     {
         return piece_type;
     }
-    std::vector<Point> valid_movements_pion(Point p, Piece **array);
+    std::vector<Point> valid_movements(Point p, Piece **array);
 };

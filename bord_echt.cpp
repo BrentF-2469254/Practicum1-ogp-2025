@@ -22,4 +22,5 @@ void Bord::printbord()
         }
         std::cout << "\n";
     }
-}
+};
+
