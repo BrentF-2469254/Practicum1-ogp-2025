@@ -3,5 +3,5 @@ class Computer : public Speler
 {
 public:
     Computer(Kleur kleur, std::string naam = "computer");
-    bool beweeg_piece(Piece **array);
+    bool beweeg_piece(Piece ***array);
 };
