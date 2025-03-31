@@ -7,8 +7,8 @@ private:
 
 public:
     void printbord();
-    Piece **get_current_bord()
+    Piece *(*get_current_bord())[8]
     {
-        return *arr;
+        return arr;
     }
 };

@@ -12,5 +12,5 @@ public:
     {
         return piece_type;
     }
-    std::vector<Point> valid_movements(Point p, Piece **array);
+    std::vector<Point> valid_movements(Point p, Piece *(*array)[8]);
 };
